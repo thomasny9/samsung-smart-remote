@@ -1,0 +1,28 @@
+{
+  "title": "Samsung Smart Remote",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Samsung Smart Remote",
+        "description": "Add the Samsung Smart Remote companion integration."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Samsung Smart Remote is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Samsung Smart Remote options",
+        "description": "Optionally set the directed broadcast address used for Wake-on-LAN. Leave blank to automatically derive a /24 broadcast address from each TV IP address.",
+        "data": {
+          "wol_broadcast_address": "Wake-on-LAN broadcast address"
+        }
+      }
+    },
+    "error": {
+      "invalid_ipv4": "Enter a valid IPv4 address."
+    }
+  }
+}
