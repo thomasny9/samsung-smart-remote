@@ -1,0 +1,44 @@
+launch_app:
+  name: Launch Samsung TV app
+  description: Launches an installed Samsung TV application using the local Samsung WebSocket API.
+  fields:
+    entity_id:
+      name: Samsung TV remote
+      description: Remote entity belonging to the Samsung television.
+      required: true
+      selector:
+        entity:
+          domain: remote
+
+    app_id:
+      name: Application ID
+      description: Samsung application ID to launch.
+      required: true
+      example: "3201907018807"
+      selector:
+        text:
+
+
+set_mode:
+  name: Set Samsung TV mode
+  description: Sets the Samsung television to normal viewing, Art Mode, or fully off.
+  fields:
+    entity_id:
+      name: Samsung TV remote
+      description: Remote entity belonging to the Samsung television.
+      required: true
+      selector:
+        entity:
+          domain: remote
+
+    mode:
+      name: TV mode
+      description: Desired television operating mode.
+      required: true
+      selector:
+        select:
+          options:
+            - "on"
+            - "art"
+            - "off"
+            
