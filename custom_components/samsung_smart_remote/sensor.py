@@ -823,8 +823,7 @@ class SamsungTVModeSensor(SensorEntity):
         ) as err:
 
             _LOGGER.warning(
-                "ART-DIAG Samsung Art Mode query failed 
-                "for %s (%s): %s",
+                "ART-DIAG Samsung Art Mode query failed for %s (%s): %s",
                 self._remote_entity_id,
                 self._host,
                 err,
