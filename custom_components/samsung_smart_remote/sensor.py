@@ -594,11 +594,6 @@ class SamsungTVModeSensor(SensorEntity):
 
         try:
 
-            _LOGGER.warning(
-                "ART-DIAG %s (%s): opening Art WebSocket %s",
-                self._remote_entity_id, self._host, url,
-            )
-
             ws = await session.ws_connect(
                 url,
                 ssl=False,
@@ -651,10 +646,6 @@ class SamsungTVModeSensor(SensorEntity):
 
 
             if not ready:
-                _LOGGER.warning(
-                    "ART-DIAG %s (%s): Art channel never became ready",
-                    self._remote_entity_id, self._host,
-                )
                 return None
 
 
@@ -686,11 +677,6 @@ class SamsungTVModeSensor(SensorEntity):
                 command
             )
 
-            _LOGGER.warning(
-                "ART-DIAG %s (%s): sent get_artmode_status request=%s",
-                self._remote_entity_id, self._host, command,
-            )
-
 
             #
             # Wait for the Samsung Art response.
@@ -705,11 +691,6 @@ class SamsungTVModeSensor(SensorEntity):
 
 
                         if message.type.name == "TEXT":
-
-                            _LOGGER.warning(
-                                "ART-DIAG %s (%s): response raw=%s",
-                                self._remote_entity_id, self._host, message.data,
-                            )
 
                             try:
                                 response = (
@@ -766,7 +747,7 @@ class SamsungTVModeSensor(SensorEntity):
                             # get_artmode_status.
                             #
 
-                            if event == "artmode_status":
+                            if event in ("artmode_status", "get_artmode_status"):
 
                                 value = data.get(
                                     "value"
@@ -822,8 +803,8 @@ class SamsungTVModeSensor(SensorEntity):
             OSError,
         ) as err:
 
-            _LOGGER.warning(
-                "ART-DIAG Samsung Art Mode query failed for %s (%s): %s",
+            _LOGGER.debug(
+                "Samsung Art Mode query failed for %s (%s): %s",
                 self._remote_entity_id,
                 self._host,
                 err,
